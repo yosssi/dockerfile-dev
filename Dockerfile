@@ -21,11 +21,15 @@ RUN apt-get install -y make curl
 RUN add-apt-repository -y ppa:git-core/ppa
 RUN apt-get update
 RUN apt-get install -y git
+RUN git config --global user.email "yoshida.keiji.84@gmail.com"
+RUN git config --global user.name "yosssi"
+RUN git config --global core.editor "/usr/bin/vi"
+RUN git config --global color.ui "true"
 
 # install Go 1.2.1
 RUN curl -o /usr/local/go1.2.1.linux-amd64.tar.gz https://go.googlecode.com/files/go1.2.1.linux-amd64.tar.gz
 RUN tar -C /usr/local -xzf /usr/local/go1.2.1.linux-amd64.tar.gz
 RUN rm /usr/local/go1.2.1.linux-amd64.tar.gz
 ENV GOROOT /usr/local/go
-ENV GOPATH $HOME/go
+ENV GOPATH /host_home/go
 ENV PATH $PATH:$GOPATH/bin:$GOROOT:$GOROOT/bin
